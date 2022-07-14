@@ -7,6 +7,7 @@ declare global {
 	type AppDispatch = typeof store.dispatch;
 
 	interface Contact {
+		_id: string;
 		name: string;
 		subject: string;
 		email: string;

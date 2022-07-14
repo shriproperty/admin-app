@@ -1,7 +1,7 @@
-import React, { FC, useEffect } from 'react';
-import { StyleSheet, Text, TextStyle } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { RefreshControl, StyleSheet, Text, TextStyle } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { DataTable } from 'react-native-paper';
+import { ActivityIndicator, DataTable } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import Colors from '../../constants/Colors';
@@ -14,10 +14,12 @@ interface ContactsProps {
 
 const Contacts: FC<ContactsProps> = props => {
 	const dispatch = useAppDispatch();
+	const [refreshing, setRefreshing] = useState(true);
 
 	useEffect(() => {
 		dispatch(fetchAllContacts());
-	}, []);
+		setRefreshing(false);
+	}, [refreshing]);
 
 	return (
 		<DataTable>
@@ -27,7 +29,18 @@ const Contacts: FC<ContactsProps> = props => {
 				<DataTable.Title>Subject</DataTable.Title>
 			</DataTable.Header>
 
-			<FlatList data={props.contacts} renderItem={TableRow} />
+			<FlatList
+				data={props.contacts}
+				renderItem={TableRow}
+				keyExtractor={item => item._id}
+				refreshControl={
+					<RefreshControl
+						refreshing={refreshing}
+						colors={[Colors.primary]}
+						onRefresh={() => setRefreshing(true)}
+					/>
+				}
+			/>
 		</DataTable>
 	);
 };
@@ -42,7 +55,7 @@ interface TableRowProps {
 	item: {
 		name: string;
 		status: string;
-		message: string;
+		subject: string;
 	};
 }
 
@@ -58,7 +71,7 @@ const TableRow: FC<TableRowProps> = ({ item }) => {
 			</DataTable.Cell>
 
 			<DataTable.Cell>
-				<Text>{item.message}</Text>
+				<Text>{item.subject}</Text>
 			</DataTable.Cell>
 		</DataTable.Row>
 	);
