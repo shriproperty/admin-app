@@ -17,7 +17,7 @@ const Contacts: FC<ContactsProps> = props => {
 
 	useEffect(() => {
 		dispatch(fetchAllContacts());
-	}, [dispatch]);
+	}, []);
 
 	return (
 		<DataTable>
