@@ -1,15 +1,24 @@
-import React, { FC } from 'react';
-import { View, Text, StyleSheet, TextStyle } from 'react-native';
+import React, { FC, useEffect } from 'react';
+import { StyleSheet, Text, TextStyle } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { DataTable } from 'react-native-paper';
+import { connect } from 'react-redux';
+
 import Colors from '../../constants/Colors';
+import { useAppDispatch } from '../../hooks';
+import { fetchAllContacts } from '../../store/contacts/contacts.services';
 
-const DATA = [
-	{ name: 'Ayush', status: 'Pending', message: 'This is a message' },
-	{ name: 'Arpit', status: 'Pending', message: 'This is a message' },
-];
+interface ContactsProps {
+	contacts: Contact[];
+}
 
-const Contacts: FC = () => {
+const Contacts: FC<ContactsProps> = props => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchAllContacts());
+	}, [dispatch]);
+
 	return (
 		<DataTable>
 			<DataTable.Header>
@@ -18,9 +27,15 @@ const Contacts: FC = () => {
 				<DataTable.Title>Subject</DataTable.Title>
 			</DataTable.Header>
 
-			<FlatList data={DATA} renderItem={TableRow} />
+			<FlatList data={props.contacts} renderItem={TableRow} />
 		</DataTable>
 	);
+};
+
+const mapStateToProps = (state: RootState) => {
+	return {
+		contacts: state.contacts.value,
+	};
 };
 
 interface TableRowProps {
@@ -61,4 +76,4 @@ const styles = StyleSheet.create<Styles>({
 	},
 });
 
-export default Contacts;
+export default connect(mapStateToProps)(Contacts);
