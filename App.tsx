@@ -1,23 +1,24 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+import Contacts from './screens/contacts/Contacts.screen';
 
 const App: FC = () => {
+	const Drawer = createDrawerNavigator();
+
 	return (
-		<View style={styles.container}>
-			<Text>Hello</Text>
+		<>
 			<StatusBar style='auto' />
-		</View>
+			<NavigationContainer>
+				<Drawer.Navigator initialRouteName='Contacts' backBehavior='history'>
+					<Drawer.Screen name='Contacts' component={Contacts} />
+				</Drawer.Navigator>
+			</NavigationContainer>
+		</>
 	);
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});
