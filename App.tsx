@@ -1,4 +1,4 @@
-import { API_KEY, API_URL } from '@env';
+import { APIKEY, APIURL } from '@env';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import axios from 'axios';
@@ -10,8 +10,8 @@ import Colors from './constants/Colors';
 import Contacts from './screens/contacts';
 import store from './store';
 
-axios.defaults.baseURL = API_URL;
-axios.defaults.headers.common['x-api-key'] = API_KEY;
+axios.defaults.baseURL = APIURL;
+axios.defaults.headers.common['x-api-key'] = APIKEY;
 
 const theme = {
 	...DefaultTheme,
