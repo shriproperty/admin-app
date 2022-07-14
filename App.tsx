@@ -1,10 +1,18 @@
 import React, { FC } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Contacts from './screens/contacts/Contacts.screen';
+import Colors from './constants/Colors';
+
+const theme = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		primary: Colors.primary,
+	},
+};
 
 const App: FC = () => {
 	const Drawer = createDrawerNavigator();
@@ -12,7 +20,7 @@ const App: FC = () => {
 	return (
 		<>
 			<StatusBar style='auto' />
-			<NavigationContainer>
+			<NavigationContainer theme={theme}>
 				<Drawer.Navigator initialRouteName='Contacts' backBehavior='history'>
 					<Drawer.Screen name='Contacts' component={Contacts} />
 				</Drawer.Navigator>
