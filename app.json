@@ -2,6 +2,7 @@
 	"expo": {
 		"name": "Shriproperty Admin",
 		"slug": "shriproperty-admin",
+		"privacy": "public",
 		"description": "This is admin app for shriproperty.com",
 		"version": "1.0.0",
 		"orientation": "default",
@@ -23,7 +24,8 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/logo.png",
 				"backgroundColor": "#FFFFFF"
-			}
+			},
+			"package": "com.ayush_chugh.shripropertyadmin"
 		},
 		"web": {
 			"favicon": "./assets/logo.png"
