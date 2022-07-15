@@ -1,34 +1,37 @@
 {
-	"expo": {
-		"name": "Shriproperty Admin",
-		"slug": "shriproperty-admin",
-		"privacy": "public",
-		"description": "This is admin app for shriproperty.com",
-		"version": "1.0.0",
-		"orientation": "default",
-		"icon": "./assets/logo.png",
-		"userInterfaceStyle": "light",
-		"splash": {
-			"image": "./assets/logo.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/logo.png",
-				"backgroundColor": "#FFFFFF"
-			},
-			"package": "com.ayush_chugh.shripropertyadmin"
-		},
-		"web": {
-			"favicon": "./assets/logo.png"
-		}
-	}
+  "expo": {
+    "name": "Shriproperty Admin",
+    "slug": "shriproperty-admin",
+    "privacy": "public",
+    "description": "This is admin app for shriproperty.com",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "shriproperty-admin"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.ayush_chugh.shripropertyadmin"
+    },
+    "web": {
+      "favicon": "./assets/logo.png"
+    }
+  }
 }
