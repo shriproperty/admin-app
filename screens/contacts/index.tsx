@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
-import { RefreshControl, StyleSheet, Text, TextStyle } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { ActivityIndicator, DataTable } from 'react-native-paper';
+import { RefreshControl, Text, FlatList } from 'react-native';
+import { Link } from '@react-navigation/native';
+import { DataTable } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import Colors from '../../constants/Colors';
@@ -23,7 +23,9 @@ const TableRow: FC<TableRowProps> = props => {
 	return (
 		<DataTable.Row>
 			<DataTable.Cell>
-				<Text style={tableStyles.main}>{item.name}</Text>
+				<Link to={{ screen: 'Contact' }}>
+					<Text style={tableStyles.main}>{item.name}</Text>
+				</Link>
 			</DataTable.Cell>
 
 			<DataTable.Cell>
