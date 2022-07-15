@@ -7,6 +7,35 @@ import { connect } from 'react-redux';
 import Colors from '../../constants/Colors';
 import { useAppDispatch } from '../../hooks';
 import { fetchAllContacts } from '../../store/contacts/contacts.services';
+import styles from './index.styles';
+
+interface TableRowProps {
+	item: {
+		name: string;
+		status: string;
+		subject: string;
+	};
+}
+
+const TableRow: FC<TableRowProps> = props => {
+	const { item } = props;
+
+	return (
+		<DataTable.Row>
+			<DataTable.Cell>
+				<Text style={styles.name}>{item.name}</Text>
+			</DataTable.Cell>
+
+			<DataTable.Cell>
+				<Text>{item.status}</Text>
+			</DataTable.Cell>
+
+			<DataTable.Cell>
+				<Text>{item.subject}</Text>
+			</DataTable.Cell>
+		</DataTable.Row>
+	);
+};
 
 interface ContactsProps {
 	contacts: Contact[];
@@ -50,43 +79,5 @@ const mapStateToProps = (state: RootState) => {
 		contacts: state.contacts.value,
 	};
 };
-
-interface TableRowProps {
-	item: {
-		name: string;
-		status: string;
-		subject: string;
-	};
-}
-
-const TableRow: FC<TableRowProps> = ({ item }) => {
-	return (
-		<DataTable.Row>
-			<DataTable.Cell>
-				<Text style={styles.name}>{item.name}</Text>
-			</DataTable.Cell>
-
-			<DataTable.Cell>
-				<Text>{item.status}</Text>
-			</DataTable.Cell>
-
-			<DataTable.Cell>
-				<Text>{item.subject}</Text>
-			</DataTable.Cell>
-		</DataTable.Row>
-	);
-};
-
-interface Styles {
-	name: TextStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
-	name: {
-		color: Colors.primary,
-		fontWeight: 'bold',
-		textDecorationLine: 'underline',
-	},
-});
 
 export default connect(mapStateToProps)(Contacts);
