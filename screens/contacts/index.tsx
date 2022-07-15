@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
-import { RefreshControl, Text, FlatList } from 'react-native';
 import { Link } from '@react-navigation/native';
+import React, { FC, useEffect, useState } from 'react';
+import { RefreshControl, Text, FlatList, Pressable } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { connect } from 'react-redux';
 
@@ -23,7 +23,7 @@ const TableRow: FC<TableRowProps> = props => {
 	return (
 		<DataTable.Row>
 			<DataTable.Cell>
-				<Link to={{ screen: 'Contact' }}>
+				<Link to={{ screen: 'Contact', params: item }}>
 					<Text style={tableStyles.main}>{item.name}</Text>
 				</Link>
 			</DataTable.Cell>
@@ -41,6 +41,7 @@ const TableRow: FC<TableRowProps> = props => {
 
 interface ContactsProps {
 	contacts: Contact[];
+	navigation: any;
 }
 
 const Contacts: FC<ContactsProps> = props => {

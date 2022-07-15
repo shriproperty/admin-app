@@ -1,16 +1,7 @@
-import React, { FC, useEffect } from 'react';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import React, { FC } from 'react';
 import { Text } from 'react-native';
 
 const Contact: FC = props => {
-	const navigation = useNavigation();
-
-	useEffect(() => {
-		navigation.setOptions({
-			title: 'Hello',
-		});
-	}, []);
-
 	return <Text>Contact</Text>;
 };
 

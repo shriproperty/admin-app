@@ -32,31 +32,59 @@ const App: FC = () => {
 		<Provider store={store}>
 			<NavigationContainer>
 				<StatusBar style='auto' />
-				<DrawerNavigation />
+				<StackNavigation />
 			</NavigationContainer>
 		</Provider>
 	);
 };
 
-const DrawerNavigation: FC = () => {
+const headerOptions = {
+	headerTintColor: Colors.primary,
+	headerShadowVisible: true,
+};
+
+const StackNavigation: FC = () => {
 	return (
-		<Drawer.Navigator initialRouteName='Contacts' backBehavior='history'>
-			<Drawer.Screen
-				name='Contacts'
+		<Stack.Navigator
+			screenOptions={{
+				animation: 'slide_from_right',
+				...headerOptions,
+			}}
+		>
+			<Stack.Screen
+				name='Drawer'
+				component={DrawerNavigation}
 				options={{ headerShown: false }}
-				component={ContactNavigation}
 			/>
-			<Drawer.Screen name='Temporary Users' component={TempUsers} />
-		</Drawer.Navigator>
+			{/* <Stack.Screen name='Contact' component={Contact} /> */}
+			<Stack.Screen
+				name='Contact'
+				component={Contact}
+				options={({ route }: any) => ({
+					title: `Contacts / ${route?.params?.name}`,
+				})}
+			/>
+		</Stack.Navigator>
 	);
 };
 
-const ContactNavigation: FC = () => {
+const DrawerNavigation: FC = () => {
 	return (
-		<Stack.Navigator screenOptions={{ animation: 'slide_from_right' }}>
-			<Stack.Screen name='All Contacts' component={Contacts} />
-			<Stack.Screen name='Contact' component={Contact} />
-		</Stack.Navigator>
+		<Drawer.Navigator
+			initialRouteName='Contacts'
+			backBehavior='history'
+			screenOptions={{
+				drawerActiveTintColor: Colors.primary,
+				...headerOptions,
+			}}
+		>
+			<Drawer.Screen name='Contacts' component={Contacts} />
+			<Drawer.Screen
+				name='TempUsers'
+				options={{ title: 'Temporary Users' }}
+				component={TempUsers}
+			/>
+		</Drawer.Navigator>
 	);
 };
 
