@@ -15,4 +15,14 @@ declare global {
 		message: string;
 		status: 'Pending' | 'In Progress' | 'Completed';
 	}
+
+	interface TempUser {
+		_id: string;
+		name: string;
+		email: string;
+		phone: string;
+		callingStatus: 'Pending' | 'Rejected' | 'Call Again' | 'Done';
+		callAgainDate?: string;
+		talkProgress?: string;
+	}
 }

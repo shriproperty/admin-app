@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Colors from '../../constants/Colors';
 import { useAppDispatch } from '../../hooks';
 import { fetchAllContacts } from '../../store/contacts/contacts.services';
-import styles from './index.styles';
+import tableStyles from '../../styles/table.styles';
 
 interface TableRowProps {
 	item: {
@@ -23,7 +23,7 @@ const TableRow: FC<TableRowProps> = props => {
 	return (
 		<DataTable.Row>
 			<DataTable.Cell>
-				<Text style={styles.name}>{item.name}</Text>
+				<Text style={tableStyles.main}>{item.name}</Text>
 			</DataTable.Cell>
 
 			<DataTable.Cell>
