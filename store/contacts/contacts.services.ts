@@ -1,4 +1,4 @@
-import { Dispatch, createAsyncThunk } from '@reduxjs/toolkit';
+import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { contactsActions } from './contacts.slice';
 
@@ -9,7 +9,7 @@ export const fetchAllContacts = () => {
 
 			dispatch(contactsActions.replaceContacts(data.data));
 
-			return data;
+			return data.data;
 		} catch (err) {
 			console.error(err);
 		}

@@ -1,33 +1,11 @@
-import React, { FC } from 'react';
-import { Text, FlatList } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { Text, FlatList, RefreshControl } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import tableStyles from '../../styles/table.styles';
-
-const DATA: TempUser[] = [
-	{
-		_id: 'hello',
-		name: 'Ayush',
-		phone: '9501852700',
-		callingStatus: 'Pending',
-		callAgainDate: '11/12/2006',
-		email: 'ayushchugh2006@gmail.com',
-	},
-	{
-		_id: 'hello',
-		name: 'Ayush',
-		phone: '9501852700',
-		callingStatus: 'Call Again',
-		callAgainDate: '11/12/2006',
-		email: 'ayushchugh2006@gmail.com',
-	},
-	{
-		_id: 'hello',
-		name: 'Ayush',
-		phone: '9501852700',
-		callingStatus: 'Pending',
-		email: 'ayushchugh2006@gmail.com',
-	},
-];
+import { useAppDispatch } from '../../hooks';
+import { connect } from 'react-redux';
+import { fetchAllTempUsers } from '../../store/tempUsers/tempUsers.services';
+import Colors from '../../constants/Colors';
 
 interface TableRowProps {
 	item: TempUser;
@@ -57,7 +35,19 @@ const TableRow: FC<TableRowProps> = props => {
 	);
 };
 
-const TempUsers: FC = () => {
+interface TempUsersProps {
+	tempUsers: TempUser[];
+}
+
+const TempUsers: FC<TempUsersProps> = props => {
+	const dispatch = useAppDispatch();
+	const [refreshing, setRefreshing] = useState(true);
+
+	useEffect(() => {
+		dispatch(fetchAllTempUsers());
+		setRefreshing(false);
+	}, [refreshing]);
+
 	return (
 		<DataTable>
 			<DataTable.Header>
@@ -67,9 +57,25 @@ const TempUsers: FC = () => {
 				<DataTable.Title>Call Again</DataTable.Title>
 			</DataTable.Header>
 
-			<FlatList data={DATA} renderItem={TableRow} />
+			<FlatList
+				data={props.tempUsers}
+				renderItem={TableRow}
+				refreshControl={
+					<RefreshControl
+						refreshing={refreshing}
+						colors={[Colors.primary]}
+						onRefresh={() => setRefreshing(true)}
+					/>
+				}
+			/>
 		</DataTable>
 	);
 };
 
-export default TempUsers;
+const mapStateToProps = (state: RootState) => {
+	return {
+		tempUsers: state.tempUsers.value,
+	};
+};
+
+export default connect(mapStateToProps)(TempUsers);
