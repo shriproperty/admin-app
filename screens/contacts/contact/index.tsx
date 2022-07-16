@@ -57,7 +57,7 @@ const Contact: FC<ContactProps> = props => {
 				</View>
 			</Modal>
 
-			<Text style={styles.subject}>{params.name}</Text>
+			<Text style={styles.subject}>{params.subject}</Text>
 			<Text style={[styles.message, styles.marginTop]}>{params.message}</Text>
 
 			<View style={styles.marginTop}>
