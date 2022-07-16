@@ -4,6 +4,7 @@ import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import React, { FC } from 'react';
 import { Provider } from 'react-redux';
+import { Provider as PaperProvider, Portal } from 'react-native-paper';
 
 import store from './store';
 import Colors from './constants/Colors';
@@ -25,7 +26,11 @@ const App: FC = () => {
 		<Provider store={store}>
 			<NavigationContainer theme={theme}>
 				<StatusBar style='auto' />
-				<StackNavigation />
+				<PaperProvider>
+					<Portal.Host>
+						<StackNavigation />
+					</Portal.Host>
+				</PaperProvider>
 			</NavigationContainer>
 		</Provider>
 	);
