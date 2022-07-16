@@ -6,6 +6,16 @@ declare global {
 	type RootState = ReturnType<typeof store.getState>;
 	type AppDispatch = typeof store.dispatch;
 
+	type StackParamList = {
+		Drawer: undefined;
+		Contact: Contact;
+	};
+
+	type DrawerParamList = {
+		Contacts: undefined;
+		TempUsers: undefined;
+	};
+
 	interface Contact {
 		_id: string;
 		name: string;

@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import DrawerNavigation from './DrawerNavigation';
 import Contact from '../screens/contacts/contact';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 const StackNavigation: FC = () => {
 	return (

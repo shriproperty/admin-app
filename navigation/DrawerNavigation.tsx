@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import contacts from '../screens/contacts';
 import tempUsers from '../screens/tempUsers';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 const DrawerNavigation: FC = () => {
 	return (
