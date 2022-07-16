@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Button } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from './index.styles';
 import Colors from '../../../constants/Colors';
@@ -24,7 +25,13 @@ const Contact: FC<ContactProps> = props => {
 			<View style={styles.marginTop}>
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Status - </Text>
-					<Text style={styles.infoContent}>{params.status}</Text>
+
+					<View style={styles.flexRow}>
+						<Text style={styles.infoContent}>{params.status}</Text>
+						<Pressable style={styles.pencilIcon}>
+							<Ionicons name='pencil' size={25} color={Colors.primary} />
+						</Pressable>
+					</View>
 				</View>
 
 				<View style={styles.infoContainer}>

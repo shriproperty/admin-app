@@ -2,18 +2,25 @@ import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
 import Colors from '../../../constants/Colors';
 
 interface ContactStyles {
+	flexRow: ViewStyle;
+	marginTop: TextStyle | ViewStyle;
 	container: ViewStyle;
 	subject: TextStyle;
 	message: TextStyle;
-	marginTop: TextStyle | ViewStyle;
 	infoContainer: ViewStyle;
 	infoHeading: TextStyle;
 	infoContent: TextStyle;
+	pencilIcon: ViewStyle;
 	buttonContainer: ViewStyle;
 	button: ViewStyle;
 }
 
 const styles = StyleSheet.create<ContactStyles>({
+	flexRow: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+
 	marginTop: {
 		marginTop: 25,
 	},
@@ -37,6 +44,7 @@ const styles = StyleSheet.create<ContactStyles>({
 	infoContainer: {
 		flexDirection: 'row',
 		marginBottom: 15,
+		alignItems: 'center',
 	},
 
 	infoHeading: {
@@ -48,6 +56,10 @@ const styles = StyleSheet.create<ContactStyles>({
 		fontWeight: '500',
 		marginLeft: 15,
 		color: Colors.secondary,
+	},
+
+	pencilIcon: {
+		marginLeft: 20,
 	},
 
 	buttonContainer: {
