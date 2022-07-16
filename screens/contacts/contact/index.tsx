@@ -18,27 +18,23 @@ const Contact: FC<ContactProps> = props => {
 
 	return (
 		<ScrollView style={styles.container}>
-			<Text style={styles.subject}>3BHK Hose for selling in SBP</Text>
-			<Text style={[styles.message, styles.marginTop]}>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy text ever
-				since the 1500s, when an unknown printer took a galley
-			</Text>
+			<Text style={styles.subject}>{params.name}</Text>
+			<Text style={[styles.message, styles.marginTop]}>{params.message}</Text>
 
 			<View style={styles.marginTop}>
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Status - </Text>
-					<Text style={styles.infoContent}>Pending</Text>
+					<Text style={styles.infoContent}>{params.status}</Text>
 				</View>
 
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Email - </Text>
-					<Text style={styles.infoContent}>ayushchugh2006@gmail.com</Text>
+					<Text style={styles.infoContent}>{params.email}</Text>
 				</View>
 
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Phone - </Text>
-					<Text style={styles.infoContent}>9501852700</Text>
+					<Text style={styles.infoContent}>{params.phone}</Text>
 				</View>
 			</View>
 
