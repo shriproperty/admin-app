@@ -23,7 +23,7 @@ const theme = {
 const App: FC = () => {
 	return (
 		<Provider store={store}>
-			<NavigationContainer>
+			<NavigationContainer theme={theme}>
 				<StatusBar style='auto' />
 				<StackNavigation />
 			</NavigationContainer>
