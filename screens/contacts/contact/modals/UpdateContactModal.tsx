@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { View, Text } from 'react-native';
+import React, { FC, useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import Modal from '../../../../components/modal';
 import Colors from '../../../../constants/Colors';
@@ -25,6 +25,10 @@ interface UpdateContactModalProps {
  * @return {JSX.Element} JSX.Element
  */
 const UpdateContactModal: FC<UpdateContactModalProps> = props => {
+	const [radioValue, setRadioValue] = useState<
+		'Pending' | 'In Progress' | 'Completed'
+	>('Pending');
+
 	return (
 		<Modal
 			visible={props.visible}
@@ -33,28 +37,41 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 			//TODO: Update onOk to actual logic
 			onOk={() => props.setVisible(false)}
 		>
-			<View style={styles.modalRadioButtonContainer}>
-				<RadioButton value='Pending' color={Colors.primary} status='checked' />
+			<Pressable
+				style={styles.modalRadioButtonContainer}
+				onPress={() => setRadioValue('Pending')}
+			>
+				<RadioButton
+					value='Pending'
+					color={Colors.primary}
+					status={radioValue === 'Pending' ? 'checked' : 'unchecked'}
+				/>
 				<Text style={styles.modalRadioButtonText}>Pending</Text>
-			</View>
+			</Pressable>
 
-			<View style={styles.modalRadioButtonContainer}>
+			<Pressable
+				style={styles.modalRadioButtonContainer}
+				onPress={() => setRadioValue('In Progress')}
+			>
 				<RadioButton
 					value='In Progress'
 					color={Colors.primary}
-					status='checked'
+					status={radioValue === 'In Progress' ? 'checked' : 'unchecked'}
 				/>
 				<Text style={styles.modalRadioButtonText}>In Progress</Text>
-			</View>
+			</Pressable>
 
-			<View style={styles.modalRadioButtonContainer}>
+			<Pressable
+				style={styles.modalRadioButtonContainer}
+				onPress={() => setRadioValue('Completed')}
+			>
 				<RadioButton
 					value='Completed'
 					color={Colors.primary}
-					status='checked'
+					status={radioValue === 'Completed' ? 'checked' : 'unchecked'}
 				/>
 				<Text style={styles.modalRadioButtonText}>Completed</Text>
-			</View>
+			</Pressable>
 		</Modal>
 	);
 };
