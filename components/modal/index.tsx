@@ -29,7 +29,7 @@ interface ModalProps {
 	 * Elements to show as content of modal
 	 * @type {ReactNode}
 	 */
-	children: ReactNode;
+	children?: ReactNode;
 	/**
 	 * additional styles for modal
 	 * @type {ViewStyle}

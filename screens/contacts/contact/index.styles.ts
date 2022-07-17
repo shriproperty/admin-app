@@ -12,8 +12,6 @@ interface ContactStyles {
 	infoContent: TextStyle;
 	pencilIcon: ViewStyle;
 	buttonContainer: ViewStyle;
-	modalRadioButtonContainer: ViewStyle;
-	modalRadioButtonText: TextStyle;
 }
 
 const styles = StyleSheet.create<ContactStyles>({
@@ -65,16 +63,6 @@ const styles = StyleSheet.create<ContactStyles>({
 
 	buttonContainer: {
 		marginVertical: 60,
-	},
-
-	modalRadioButtonContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
-
-	modalRadioButtonText: {
-		marginLeft: 10,
-		fontSize: 16,
 	},
 });
 

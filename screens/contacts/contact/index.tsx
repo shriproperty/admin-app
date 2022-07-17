@@ -6,8 +6,8 @@ import Button from '../../../components/button';
 
 import styles from './index.styles';
 import Colors from '../../../constants/Colors';
-import Modal from '../../../components/modal';
-import { RadioButton } from 'react-native-paper';
+import DeleteContactModal from './modals/DeleteContactModal';
+import UpdateContactModal from './modals/UpdateContactModal';
 
 type ContactScreenProps = NativeStackScreenProps<StackParamList, 'Contact'>;
 
@@ -18,44 +18,21 @@ interface ContactProps {
 
 const Contact: FC<ContactProps> = props => {
 	const { params } = props.route;
-	const [modalVisible, setModalVisible] = useState(false);
+	const [updateContactModalVisible, setUpdateContactModalVisible] =
+		useState(false);
+	const [deleteContactModalVisible, setDeleteContactModalVisible] =
+		useState(false);
 
 	return (
 		<ScrollView style={styles.container}>
-			<Modal
-				visible={modalVisible}
-				setVisible={setModalVisible}
-				title='Chose status'
-				//TODO: Update onOk to actual logic
-				onOk={() => setModalVisible(false)}
-			>
-				<View style={styles.modalRadioButtonContainer}>
-					<RadioButton
-						value='Pending'
-						color={Colors.primary}
-						status='checked'
-					/>
-					<Text style={styles.modalRadioButtonText}>Pending</Text>
-				</View>
-
-				<View style={styles.modalRadioButtonContainer}>
-					<RadioButton
-						value='In Progress'
-						color={Colors.primary}
-						status='checked'
-					/>
-					<Text style={styles.modalRadioButtonText}>In Progress</Text>
-				</View>
-
-				<View style={styles.modalRadioButtonContainer}>
-					<RadioButton
-						value='Completed'
-						color={Colors.primary}
-						status='checked'
-					/>
-					<Text style={styles.modalRadioButtonText}>Completed</Text>
-				</View>
-			</Modal>
+			<DeleteContactModal
+				visible={deleteContactModalVisible}
+				setVisible={setDeleteContactModalVisible}
+			/>
+			<UpdateContactModal
+				visible={updateContactModalVisible}
+				setVisible={setUpdateContactModalVisible}
+			/>
 
 			<Text style={styles.subject}>{params.subject}</Text>
 			<Text style={[styles.message, styles.marginTop]}>{params.message}</Text>
@@ -68,7 +45,7 @@ const Contact: FC<ContactProps> = props => {
 						<Text style={styles.infoContent}>{params.status}</Text>
 						<Pressable
 							style={styles.pencilIcon}
-							onPress={() => setModalVisible(true)}
+							onPress={() => setUpdateContactModalVisible(true)}
 						>
 							<Ionicons name='pencil' size={25} color={Colors.primary} />
 						</Pressable>
@@ -87,7 +64,13 @@ const Contact: FC<ContactProps> = props => {
 			</View>
 
 			<View style={styles.buttonContainer}>
-				<Button rippleEffect title='Delete' type='outlined' icon='delete' />
+				<Button
+					rippleEffect
+					title='Delete'
+					type='outlined'
+					icon='delete'
+					onPress={() => setDeleteContactModalVisible(true)}
+				/>
 			</View>
 		</ScrollView>
 	);
