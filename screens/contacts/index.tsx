@@ -41,7 +41,6 @@ const TableRow: FC<TableRowProps> = props => {
 
 interface ContactsProps {
 	contacts: Contact[];
-	navigation: any;
 }
 
 const Contacts: FC<ContactsProps> = props => {

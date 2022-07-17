@@ -9,11 +9,11 @@ import Colors from '../../../constants/Colors';
 import DeleteContactModal from './modals/DeleteContactModal';
 import UpdateContactModal from './modals/UpdateContactModal';
 
-type ContactScreenProps = NativeStackScreenProps<StackParamList, 'Contact'>;
+type NavigationProps = NativeStackScreenProps<StackParamList, 'Contact'>;
 
 interface ContactProps {
-	navigation: ContactScreenProps['navigation'];
-	route: ContactScreenProps['route'];
+	navigation: NavigationProps['navigation'];
+	route: NavigationProps['route'];
 }
 
 const Contact: FC<ContactProps> = props => {
@@ -28,6 +28,7 @@ const Contact: FC<ContactProps> = props => {
 			<DeleteContactModal
 				visible={deleteContactModalVisible}
 				setVisible={setDeleteContactModalVisible}
+				id={params._id}
 			/>
 			<UpdateContactModal
 				visible={updateContactModalVisible}

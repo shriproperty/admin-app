@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { replaceContacts } from './contacts.actions';
+import { createSlice } from '@reduxjs/toolkit';
+import { replaceContacts, deleteContact } from './contacts.actions';
 
 const initialState: { value: Contact[] } = {
 	value: [],
@@ -10,6 +10,7 @@ const contactsSlice = createSlice({
 	initialState,
 	reducers: {
 		replaceContacts,
+		deleteContact,
 	},
 });
 
