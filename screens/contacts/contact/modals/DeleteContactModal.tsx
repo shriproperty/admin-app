@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Alert } from 'react-native';
 import Modal from '../../../../components/modal';
 import { useAppDispatch } from '../../../../hooks';
 import { deleteContact } from '../../../../store/contacts/contacts.services';
@@ -31,12 +32,11 @@ interface DeleteContactModalProps {
  */
 const DeleteContactModal: FC<DeleteContactModalProps> = props => {
 	const dispatch = useAppDispatch();
-	const navigation = useNavigation();
+	const navigation = useNavigation<DrawerNavigationProp>();
 
 	const okHandler = () => {
 		dispatch(deleteContact(props.id));
 		props.setVisible(false);
-		//TODO: navigate to all contacts
 		navigation.navigate('Contacts');
 	};
 

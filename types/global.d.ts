@@ -1,3 +1,5 @@
+import { DrawerNavigationProp as DrawerNavigationPropType } from '@react-navigation/drawer';
+import { StackNavigationProp as StackNavigationPropType } from '@react-navigation/stack';
 import store from '../store';
 
 export {};
@@ -5,6 +7,8 @@ export {};
 declare global {
 	type RootState = ReturnType<typeof store.getState>;
 	type AppDispatch = typeof store.dispatch;
+	type DrawerNavigationProp = DrawerNavigationPropType<DrawerParamList>;
+	type StackNavigationProp = StackNavigationPropType<StackParamList>;
 
 	type StackParamList = {
 		Drawer: undefined;
