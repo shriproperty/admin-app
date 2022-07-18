@@ -35,11 +35,10 @@ export const deleteContact = (id: string) => {
 
 			return data.data;
 		} catch (err) {
-			//TODO: Show notification error instead of just logging
 			Alert.alert(
 				'Something Went Wrong',
 				'Some problem occurred while deleting contact',
-				[{ text: 'Ok', style: 'cancel' }],
+				[{ text: 'Oh noo', style: 'cancel' }],
 				{ cancelable: true }
 			);
 		}
