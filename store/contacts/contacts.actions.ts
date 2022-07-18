@@ -4,6 +4,8 @@ interface State {
 	value: Contact[];
 }
 
+/* --------------------------------- ANCHOR Replace Contacts --------------------------------- */
+
 /**
  * Replace all contacts with passed array
  * @param {PayloadAction<Contact[]>} action array of contacts by which state should be replaced
@@ -14,6 +16,8 @@ export const replaceContacts = (
 ) => {
 	state.value = action.payload;
 };
+
+/* --------------------------------- ANCHOR Delete Contact --------------------------------- */
 
 /**
  * Delete contact

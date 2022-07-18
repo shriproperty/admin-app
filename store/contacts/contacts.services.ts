@@ -1,4 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 import axios from 'axios';
 import { contactsActions } from './contacts.slice';
 
@@ -35,7 +36,12 @@ export const deleteContact = (id: string) => {
 			return data.data;
 		} catch (err) {
 			//TODO: Show notification error instead of just logging
-			console.error(err);
+			Alert.alert(
+				'Something Went Wrong',
+				'Some problem occurred while deleting contact',
+				[{ text: 'Ok', style: 'cancel' }],
+				{ cancelable: true }
+			);
 		}
 	};
 };
