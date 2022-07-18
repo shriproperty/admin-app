@@ -1,9 +1,12 @@
 import React, { FC, useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import { updateContactStatus } from '../../../../store/contacts/contacts.services';
 import Modal from '../../../../components/modal';
 import Colors from '../../../../constants/Colors';
 import styles from './modal.styles';
+import { useAppDispatch } from '../../../../hooks';
+import { useNavigation } from '@react-navigation/native';
 
 interface UpdateContactModalProps {
 	/**
@@ -15,6 +18,11 @@ interface UpdateContactModalProps {
 	 * function to update visible state
 	 */
 	setVisible: (setVisible: boolean) => any;
+	/**
+	 * Id of contact
+	 * @type {string}
+	 */
+	id: string;
 }
 
 /**
@@ -22,13 +30,27 @@ interface UpdateContactModalProps {
  * @param {object} props
  * @param {boolean} props.visible if `true` props will be visible
  * @param {Function} props.setVisible function to update visible state
+ * @param {Function} props.id Id of contact
  * @return {JSX.Element} JSX.Element
  */
 const UpdateContactModal: FC<UpdateContactModalProps> = props => {
+	const dispatch = useAppDispatch();
+	const navigation = useNavigation<DrawerNavigationProp>();
 	const [radioValue, setRadioValue] = useState<Contact['status']>('Pending');
 
 	const updateRadioValue = (value: Contact['status']) => {
 		setRadioValue(value);
+	};
+
+	/**
+	 * Update contact status event
+	 * @param {string} id id of contact to update
+	 * @param {Contact['status']} status this status will be replaced with previous contact status
+	 */
+	const updateContactHandler = (id: string, status: Contact['status']) => {
+		dispatch(updateContactStatus(id, status));
+		navigation.navigate('Contacts');
+		props.setVisible(false);
 	};
 
 	return (
@@ -37,7 +59,7 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 			setVisible={props.setVisible}
 			title='Chose status'
 			//TODO: Update onOk to actual logic
-			onOk={() => props.setVisible(false)}
+			onOk={updateContactHandler.bind(this, props.id, radioValue)}
 		>
 			<Pressable
 				style={styles.modalRadioButtonContainer}

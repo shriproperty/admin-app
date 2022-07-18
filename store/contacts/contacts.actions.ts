@@ -17,6 +17,16 @@ export const replaceContacts = (
 	state.value = action.payload;
 };
 
+/* --------------------------------- ANCHOR Update Contact Status --------------------------------- */
+
+export const updateContact = (state: State, action: PayloadAction<Contact>) => {
+	const contactIndexInState = state.value.findIndex(
+		contact => contact._id === action.payload._id
+	);
+
+	state.value[contactIndexInState] = action.payload;
+};
+
 /* --------------------------------- ANCHOR Delete Contact --------------------------------- */
 
 /**

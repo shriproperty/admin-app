@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { replaceContacts, deleteContact } from './contacts.actions';
+import {
+	replaceContacts,
+	deleteContact,
+	updateContact,
+} from './contacts.actions';
 
 const initialState: { value: Contact[] } = {
 	value: [],
@@ -11,6 +15,7 @@ const contactsSlice = createSlice({
 	reducers: {
 		replaceContacts,
 		deleteContact,
+		updateContact,
 	},
 });
 

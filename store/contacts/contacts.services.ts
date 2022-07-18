@@ -15,9 +15,35 @@ export const fetchAllContacts = () => {
 
 			dispatch(contactsActions.replaceContacts(data.data));
 
-			return data.data;
+			return data;
 		} catch (err) {
-			showAlert('Something went wrong while deleting contact');
+			showAlert('Something went wrong while fetching contacts');
+		}
+	};
+};
+
+/* --------------------------------- ANCHOR Update Contact Status --------------------------------- */
+
+/**
+ * Update Contact
+ * @param {string} id id of contact to update
+ * @param {Contact['status']} status this status will be replaced with previous contact status
+ * @return {*} Response data from api
+ */
+export const updateContactStatus = (id: string, status: Contact['status']) => {
+	return async (dispatch: Dispatch) => {
+		try {
+			const { data } = await axios.patch(`/contacts/update/${id}`, {
+				status,
+			});
+
+			console.log(data);
+
+			dispatch(contactsActions.updateContact(data.data));
+
+			return data;
+		} catch {
+			alert('Something went wrong wile updating contact status');
 		}
 	};
 };
@@ -36,7 +62,7 @@ export const deleteContact = (id: string) => {
 
 			dispatch(contactsActions.deleteContact(id));
 
-			return data.data;
+			return data;
 		} catch (err) {
 			showAlert('Something went wrong while deleting contact');
 		}

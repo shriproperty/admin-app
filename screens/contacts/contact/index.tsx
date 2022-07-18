@@ -33,6 +33,7 @@ const Contact: FC<ContactProps> = props => {
 			<UpdateContactModal
 				visible={updateContactModalVisible}
 				setVisible={setUpdateContactModalVisible}
+				id={params._id}
 			/>
 
 			<Text style={styles.subject}>{params.subject}</Text>
