@@ -1,10 +1,13 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { Alert } from 'react-native';
 import axios from 'axios';
 import { contactsActions } from './contacts.slice';
+import showAlert from '../../helpers/alert';
 
 /* --------------------------------- ANCHOR Fetch all contacts --------------------------------- */
 
+/**
+ * Fetch All contacts from api
+ */
 export const fetchAllContacts = () => {
 	return async (dispatch: Dispatch) => {
 		try {
@@ -14,7 +17,7 @@ export const fetchAllContacts = () => {
 
 			return data.data;
 		} catch (err) {
-			console.error(err);
+			showAlert('Something went wrong while deleting contact');
 		}
 	};
 };
@@ -35,12 +38,7 @@ export const deleteContact = (id: string) => {
 
 			return data.data;
 		} catch (err) {
-			Alert.alert(
-				'Something Went Wrong',
-				'Some problem occurred while deleting contact',
-				[{ text: 'Oh noo', style: 'cancel' }],
-				{ cancelable: true }
-			);
+			showAlert('Something went wrong while deleting contact');
 		}
 	};
 };
