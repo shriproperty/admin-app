@@ -37,8 +37,6 @@ export const updateContactStatus = (id: string, status: Contact['status']) => {
 				status,
 			});
 
-			console.log(data);
-
 			dispatch(contactsActions.updateContact(data.data));
 
 			return data;
