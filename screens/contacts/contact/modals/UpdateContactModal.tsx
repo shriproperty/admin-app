@@ -49,7 +49,6 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 	 */
 	const updateContactHandler = (id: string, status: Contact['status']) => {
 		dispatch(updateContactStatus(id, status));
-		navigation.navigate('Contacts');
 		props.setVisible(false);
 	};
 

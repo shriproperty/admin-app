@@ -10,11 +10,7 @@ import { fetchAllContacts } from '../../store/contacts/contacts.services';
 import tableStyles from '../../styles/table.styles';
 
 interface TableRowProps {
-	item: {
-		name: string;
-		status: string;
-		subject: string;
-	};
+	item: Contact;
 }
 
 const TableRow: FC<TableRowProps> = props => {

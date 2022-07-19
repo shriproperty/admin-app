@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
 	replaceContacts,
-	deleteContact,
 	updateContact,
+	deleteContact,
 } from './contacts.actions';
 
 const initialState: { value: Contact[] } = {

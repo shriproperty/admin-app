@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import Button from '../../../components/button';
@@ -8,16 +9,22 @@ import styles from './index.styles';
 import Colors from '../../../constants/Colors';
 import DeleteContactModal from './modals/DeleteContactModal';
 import UpdateContactModal from './modals/UpdateContactModal';
+import { connect } from 'react-redux';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 
-type NavigationProps = NativeStackScreenProps<StackParamList, 'Contact'>;
+type NavigationProps = CompositeScreenProps<
+	NativeStackScreenProps<StackParamList, 'Contact'>,
+	DrawerScreenProps<DrawerParamList>
+>;
 
 interface ContactProps {
 	navigation: NavigationProps['navigation'];
 	route: NavigationProps['route'];
+	contact: Contact;
 }
 
 const Contact: FC<ContactProps> = props => {
-	const { params } = props.route;
+	const { contact } = props;
 	const [updateContactModalVisible, setUpdateContactModalVisible] =
 		useState(false);
 	const [deleteContactModalVisible, setDeleteContactModalVisible] =
@@ -28,23 +35,23 @@ const Contact: FC<ContactProps> = props => {
 			<DeleteContactModal
 				visible={deleteContactModalVisible}
 				setVisible={setDeleteContactModalVisible}
-				id={params._id}
+				id={contact._id}
 			/>
 			<UpdateContactModal
 				visible={updateContactModalVisible}
 				setVisible={setUpdateContactModalVisible}
-				id={params._id}
+				id={contact._id}
 			/>
 
-			<Text style={styles.subject}>{params.subject}</Text>
-			<Text style={[styles.message, styles.marginTop]}>{params.message}</Text>
+			<Text style={styles.subject}>{contact.subject}</Text>
+			<Text style={[styles.message, styles.marginTop]}>{contact.message}</Text>
 
 			<View style={styles.marginTop}>
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Status - </Text>
 
 					<View style={styles.flexRow}>
-						<Text style={styles.infoContent}>{params.status}</Text>
+						<Text style={styles.infoContent}>{contact.status}</Text>
 						<Pressable
 							style={styles.pencilIcon}
 							onPress={() => setUpdateContactModalVisible(true)}
@@ -56,12 +63,12 @@ const Contact: FC<ContactProps> = props => {
 
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Email - </Text>
-					<Text style={styles.infoContent}>{params.email}</Text>
+					<Text style={styles.infoContent}>{contact.email}</Text>
 				</View>
 
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Phone - </Text>
-					<Text style={styles.infoContent}>{params.phone}</Text>
+					<Text style={styles.infoContent}>{contact.phone}</Text>
 				</View>
 			</View>
 
@@ -78,4 +85,18 @@ const Contact: FC<ContactProps> = props => {
 	);
 };
 
-export default Contact;
+const mapStateToProps = (state: RootState, ownProps: ContactProps) => {
+	const { params } = ownProps.route;
+
+	const foundContact = state.contacts.value.find(
+		contact => contact._id === params._id
+	);
+
+	if (!foundContact) return ownProps.navigation.navigate('Contacts');
+
+	return {
+		contact: foundContact,
+	};
+};
+
+export default connect(mapStateToProps)(Contact);
