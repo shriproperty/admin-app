@@ -11,6 +11,7 @@ import DeleteContactModal from './modals/DeleteContactModal';
 import UpdateContactModal from './modals/UpdateContactModal';
 import { connect } from 'react-redux';
 import { DrawerScreenProps } from '@react-navigation/drawer';
+import useFormatDate from '../../../hooks/useFormatDate';
 
 type NavigationProps = CompositeScreenProps<
 	NativeStackScreenProps<StackParamList, 'Contact'>,
@@ -25,6 +26,8 @@ interface ContactProps {
 
 const Contact: FC<ContactProps> = props => {
 	const { contact } = props;
+	const formatDate = useFormatDate();
+
 	const [updateContactModalVisible, setUpdateContactModalVisible] =
 		useState(false);
 	const [deleteContactModalVisible, setDeleteContactModalVisible] =
@@ -47,6 +50,13 @@ const Contact: FC<ContactProps> = props => {
 			<Text style={[styles.message, styles.marginTop]}>{contact.message}</Text>
 
 			<View style={styles.marginTop}>
+				<View style={styles.infoContainer}>
+					<Text style={styles.infoHeading}>Created - </Text>
+					<Text style={styles.infoContent}>
+						{formatDate(contact.createdAt)}
+					</Text>
+				</View>
+
 				<View style={styles.infoContainer}>
 					<Text style={styles.infoHeading}>Status - </Text>
 

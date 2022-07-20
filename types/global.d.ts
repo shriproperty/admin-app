@@ -29,6 +29,8 @@ declare global {
 		phone: string;
 		message: string;
 		status: 'Pending' | 'In Progress' | 'Completed';
+		createdAt: Date;
+		updatedAt: Date;
 	}
 
 	interface TempUser {
