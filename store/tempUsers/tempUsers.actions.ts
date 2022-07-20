@@ -4,6 +4,8 @@ interface State {
 	value: TempUser[];
 }
 
+/* ------------------------ ANCHOR replace temp users ----------------------- */
+
 /**
  * Replace all contacts with passed array
  * @param {PayloadAction<TempUser[]>} action array of temp users by which state should be replaced
