@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { connect } from 'react-redux';
 import { fetchAllTempUsers } from '../../store/tempUsers/tempUsers.services';
 import Colors from '../../constants/Colors';
+import { Link } from '@react-navigation/native';
 
 interface TableRowProps {
 	item: TempUser;
@@ -17,7 +18,9 @@ const TableRow: FC<TableRowProps> = props => {
 	return (
 		<DataTable.Row>
 			<DataTable.Cell>
-				<Text style={tableStyles.main}>{item.name}</Text>
+				<Link to={{ screen: 'TempUser', params: item }}>
+					<Text style={tableStyles.main}>{item.name}</Text>
+				</Link>
 			</DataTable.Cell>
 
 			<DataTable.Cell>

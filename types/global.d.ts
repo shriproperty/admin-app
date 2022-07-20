@@ -13,6 +13,7 @@ declare global {
 	type StackParamList = {
 		Drawer: undefined;
 		Contact: Contact;
+		TempUser: TempUser;
 	};
 
 	type DrawerParamList = {
