@@ -5,7 +5,7 @@ import { DataTable } from 'react-native-paper';
 import { connect } from 'react-redux';
 
 import Colors from '../../constants/Colors';
-import { useAppDispatch } from '../../hooks';
+import useAppDispatch from '../../hooks/useAppDispatch';
 import { fetchAllContacts } from '../../store/contacts/contacts.services';
 import tableStyles from '../../styles/table.styles';
 

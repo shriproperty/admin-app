@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import { Alert } from 'react-native';
 import Modal from '../../../../components/modal';
-import { useAppDispatch } from '../../../../hooks';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
 import { deleteContact } from '../../../../store/contacts/contacts.services';
 import { useNavigation } from '@react-navigation/native';
 

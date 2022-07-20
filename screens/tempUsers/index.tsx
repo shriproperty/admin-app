@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Text, FlatList, RefreshControl } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import tableStyles from '../../styles/table.styles';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { connect } from 'react-redux';
 import { fetchAllTempUsers } from '../../store/tempUsers/tempUsers.services';
 import Colors from '../../constants/Colors';

@@ -5,7 +5,7 @@ import { updateContactStatus } from '../../../../store/contacts/contacts.service
 import Modal from '../../../../components/modal';
 import Colors from '../../../../constants/Colors';
 import styles from './modal.styles';
-import { useAppDispatch } from '../../../../hooks';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
 import { useNavigation } from '@react-navigation/native';
 
 interface UpdateContactModalProps {
