@@ -16,3 +16,20 @@ export const replaceTempUsers = (
 ) => {
 	state.value = action.payload;
 };
+
+/* ------------------------ ANCHOR delete temp user ----------------------- */
+
+/**
+ * Delete Temp User
+ * @param {PayloadAction<TempUser['_id']} action id of temp user to delete from redux state
+ */
+export const deleteTempUser = (
+	state: State,
+	action: PayloadAction<TempUser['_id']>
+) => {
+	const filteredState = state.value.filter(
+		tempUser => tempUser._id !== action.payload
+	);
+
+	state.value = filteredState;
+};

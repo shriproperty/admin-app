@@ -41,7 +41,7 @@ export const updateContactStatus = (id: string, status: Contact['status']) => {
 
 			return data;
 		} catch {
-			alert('Something went wrong wile updating contact status');
+			showAlert('Something went wrong wile updating contact status');
 		}
 	};
 };

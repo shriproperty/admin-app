@@ -62,6 +62,10 @@ const TempUser: FC<TempUserProps> = props => {
 				<Text style={[styles.infoContent]}>{tempUser.phone}</Text>
 			</View>
 
+			{/*
+			 * Talk Progress section will only be shown if there there is talk progress
+			 * coming from api
+			 */}
 			{tempUser.talkProgress && (
 				<View style={styles.marginTopBig}>
 					<Divider />
