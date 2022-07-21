@@ -2,8 +2,12 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
-import { Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import useFormatDate from '../../../hooks/useFormatDate';
+import styles from './index.styles';
+import { Divider } from 'react-native-paper';
+import Button from '../../../components/button';
 
 type NavigationProps = CompositeScreenProps<
 	NativeStackScreenProps<StackParamList, 'TempUser'>,
@@ -18,8 +22,64 @@ interface TempUserProps {
 
 const TempUser: FC<TempUserProps> = props => {
 	const { tempUser } = props;
+	const formatDate = useFormatDate();
 
-	return <Text>{tempUser.name}</Text>;
+	return (
+		<ScrollView style={styles.container}>
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Name - </Text>
+				<Text style={styles.name}>{tempUser.name}</Text>
+			</View>
+
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Date - </Text>
+				<Text style={[styles.infoContent, styles.colorAccent]}>
+					{formatDate(tempUser.createdAt)}
+				</Text>
+			</View>
+
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Calling Status - </Text>
+				<Text style={[styles.infoContent, styles.colorAccent]}>
+					{tempUser.callingStatus}
+				</Text>
+			</View>
+
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Call Again On - </Text>
+				<Text style={[styles.infoContent, styles.colorAccent]}>
+					{formatDate(tempUser.callAgainDate)}
+				</Text>
+			</View>
+
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Email - </Text>
+				<Text style={styles.infoContent}>{tempUser.email}</Text>
+			</View>
+
+			<View style={styles.infoContainer}>
+				<Text style={styles.infoHeading}>Phone - </Text>
+				<Text style={[styles.infoContent]}>{tempUser.phone}</Text>
+			</View>
+
+			{tempUser.talkProgress && (
+				<View style={styles.marginTopBig}>
+					<Divider />
+
+					<Text style={[styles.infoHeading, styles.marginTopSmall]}>
+						Talk Progress
+					</Text>
+					<Text style={[styles.talkProgress, styles.marginTopBig]}>
+						{tempUser.talkProgress}
+					</Text>
+				</View>
+			)}
+
+			<View style={styles.buttonContainer}>
+				<Button rippleEffect title='Delete' type='outlined' icon='delete' />
+			</View>
+		</ScrollView>
+	);
 };
 
 const mapStateToProps = (state: RootState, ownProps: TempUserProps) => {

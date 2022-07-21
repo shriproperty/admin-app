@@ -41,5 +41,7 @@ declare global {
 		callingStatus: 'Pending' | 'Rejected' | 'Call Again' | 'Done';
 		callAgainDate?: string;
 		talkProgress?: string;
+		createdAt: Date;
+		updatedAt: Date;
 	}
 }
