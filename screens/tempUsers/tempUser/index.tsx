@@ -1,13 +1,14 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import useFormatDate from '../../../hooks/useFormatDate';
 import styles from './index.styles';
 import { Divider } from 'react-native-paper';
 import Button from '../../../components/button';
+import DeleteTempUserModal from './modals/DeleteTempUserModal';
 
 type NavigationProps = CompositeScreenProps<
 	NativeStackScreenProps<StackParamList, 'TempUser'>,
@@ -24,8 +25,17 @@ const TempUser: FC<TempUserProps> = props => {
 	const { tempUser } = props;
 	const formatDate = useFormatDate();
 
+	const [deleteTempUserModalVisible, setDeleteTempUserModalVisible] =
+		useState(false);
+
 	return (
 		<ScrollView style={styles.container}>
+			<DeleteTempUserModal
+				id={tempUser._id}
+				visible={deleteTempUserModalVisible}
+				setVisible={setDeleteTempUserModalVisible}
+			/>
+
 			<View style={styles.infoContainer}>
 				<Text style={styles.infoHeading}>Name - </Text>
 				<Text style={styles.name}>{tempUser.name}</Text>
@@ -71,7 +81,7 @@ const TempUser: FC<TempUserProps> = props => {
 					<Divider />
 
 					<Text style={[styles.infoHeading, styles.marginTopSmall]}>
-						Talk Progress
+						Talk Progress -
 					</Text>
 					<Text style={[styles.talkProgress, styles.marginTopBig]}>
 						{tempUser.talkProgress}
@@ -80,7 +90,13 @@ const TempUser: FC<TempUserProps> = props => {
 			)}
 
 			<View style={styles.buttonContainer}>
-				<Button rippleEffect title='Delete' type='outlined' icon='delete' />
+				<Button
+					rippleEffect
+					title='Delete'
+					type='outlined'
+					icon='delete'
+					onPress={() => setDeleteTempUserModalVisible(true)}
+				/>
 			</View>
 		</ScrollView>
 	);
