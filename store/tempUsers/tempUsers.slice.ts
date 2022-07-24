@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { replaceTempUsers, deleteTempUser } from './tempUsers.actions';
+import {
+	replaceTempUsers,
+	updateTempUser,
+	deleteTempUser,
+} from './tempUsers.actions';
 
 const initialState: { value: TempUser[] } = {
 	value: [],
@@ -10,6 +14,7 @@ const tempUsersSlice = createSlice({
 	initialState,
 	reducers: {
 		replaceTempUsers,
+		updateTempUser,
 		deleteTempUser,
 	},
 });

@@ -6,7 +6,7 @@ import showAlert from '../../helpers/alert';
 /* --------------------------------- ANCHOR Fetch all contacts --------------------------------- */
 
 /**
- * Fetch All contacts from api
+ * This service will fetch all contacts from api
  */
 export const fetchAllContacts = () => {
 	return async (dispatch: Dispatch) => {
@@ -25,7 +25,7 @@ export const fetchAllContacts = () => {
 /* --------------------------------- ANCHOR Update Contact Status --------------------------------- */
 
 /**
- * Update Contact
+ * This service will make an api call and Update Contact
  * @param {string} id id of contact to update
  * @param {Contact['status']} status this status will be replaced with previous contact status
  * @return {*} Response data from api
@@ -49,7 +49,7 @@ export const updateContactStatus = (id: string, status: Contact['status']) => {
 /* --------------------------------- ANCHOR Delete single contact --------------------------------- */
 
 /**
- * Delete single contact
+ * This service will make an api call and Delete contact
  * @param {string} id id of contact to delete
  * @return {object} response data from api
  */

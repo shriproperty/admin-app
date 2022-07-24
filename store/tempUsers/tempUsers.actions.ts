@@ -17,6 +17,24 @@ export const replaceTempUsers = (
 	state.value = action.payload;
 };
 
+/* --------------------------------- ANCHOR update temp user calling status --------------------------------- */
+/**
+ * this will update temp user from state with new temp user passed as payload
+ * @param {PayloadAction<TempUser>} action Temp user object
+ */
+export const updateTempUser = (
+	state: State,
+	action: PayloadAction<TempUser>
+) => {
+	// this will give index of tempUser object in state array
+	const tempUserIndexInState = state.value.findIndex(
+		tempUser => tempUser._id === action.payload._id
+	);
+
+	// this will replace found tempUser from state with new tempUser passed as payload
+	state.value[tempUserIndexInState] = action.payload;
+};
+
 /* ------------------------ ANCHOR delete temp user ----------------------- */
 
 /**
