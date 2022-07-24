@@ -8,7 +8,7 @@ import Button from '../../../components/button';
 import styles from './index.styles';
 import Colors from '../../../constants/Colors';
 import DeleteContactModal from './modals/DeleteContactModal';
-import UpdateContactModal from './modals/UpdateContactModal';
+import UpdateContactStatusModal from './modals/UpdateContactStatusModal';
 import { connect } from 'react-redux';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import useFormatDate from '../../../hooks/useFormatDate';
@@ -40,7 +40,7 @@ const Contact: FC<ContactProps> = props => {
 				setVisible={setDeleteContactModalVisible}
 				id={contact._id}
 			/>
-			<UpdateContactModal
+			<UpdateContactStatusModal
 				visible={updateContactModalVisible}
 				setVisible={setUpdateContactModalVisible}
 				id={contact._id}

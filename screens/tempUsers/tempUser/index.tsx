@@ -2,13 +2,16 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
 import useFormatDate from '../../../hooks/useFormatDate';
 import styles from './index.styles';
 import { Divider } from 'react-native-paper';
 import Button from '../../../components/button';
 import DeleteTempUserModal from './modals/DeleteTempUserModal';
+import UpdateTempUserCallingStatusModal from './modals/UpdateTempUserCallingStatusModal';
+import Colors from '../../../constants/Colors';
 
 type NavigationProps = CompositeScreenProps<
 	NativeStackScreenProps<StackParamList, 'TempUser'>,
@@ -27,6 +30,10 @@ const TempUser: FC<TempUserProps> = props => {
 
 	const [deleteTempUserModalVisible, setDeleteTempUserModalVisible] =
 		useState(false);
+	const [
+		updateTempUserCallingStatusModalVisible,
+		setUpdateTempUserCallingStatusModalVisible,
+	] = useState(false);
 
 	return (
 		<ScrollView style={styles.container}>
@@ -34,6 +41,12 @@ const TempUser: FC<TempUserProps> = props => {
 				id={tempUser._id}
 				visible={deleteTempUserModalVisible}
 				setVisible={setDeleteTempUserModalVisible}
+			/>
+
+			<UpdateTempUserCallingStatusModal
+				id={tempUser._id}
+				visible={updateTempUserCallingStatusModalVisible}
+				setVisible={setUpdateTempUserCallingStatusModalVisible}
 			/>
 
 			<View style={styles.infoContainer}>
@@ -50,9 +63,19 @@ const TempUser: FC<TempUserProps> = props => {
 
 			<View style={styles.infoContainer}>
 				<Text style={styles.infoHeading}>Calling Status - </Text>
-				<Text style={[styles.infoContent, styles.colorAccent]}>
-					{tempUser.callingStatus}
-				</Text>
+
+				<View style={styles.flexRow}>
+					<Text style={[styles.infoContent, styles.colorAccent]}>
+						{tempUser.callingStatus}
+					</Text>
+
+					<Pressable
+						style={styles.pencilIcon}
+						onPress={() => setUpdateTempUserCallingStatusModalVisible(true)}
+					>
+						<Ionicons name='pencil' size={25} color={Colors.primary} />
+					</Pressable>
+				</View>
 			</View>
 
 			<View style={styles.infoContainer}>

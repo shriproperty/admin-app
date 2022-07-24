@@ -47,11 +47,8 @@ const UpdateContactStatusModal: FC<UpdateContactStatusModalProps> = props => {
 	 * @param {string} id id of contact to update
 	 * @param {Contact['status']} status this status will be replaced with previous contact status
 	 */
-	const updateContactStatusHandler = (
-		id: string,
-		status: Contact['status']
-	) => {
-		dispatch(updateContactStatus(id, status));
+	const updateContactStatusHandler = () => {
+		dispatch(updateContactStatus(props.id, radioValue));
 		props.setVisible(false);
 	};
 
@@ -61,7 +58,7 @@ const UpdateContactStatusModal: FC<UpdateContactStatusModalProps> = props => {
 			setVisible={props.setVisible}
 			title='Chose status'
 			//TODO: Update onOk to actual logic
-			onOk={updateContactStatusHandler.bind(this, props.id, radioValue)}
+			onOk={updateContactStatusHandler}
 		>
 			<Pressable
 				style={styles.modalRadioButtonContainer}
