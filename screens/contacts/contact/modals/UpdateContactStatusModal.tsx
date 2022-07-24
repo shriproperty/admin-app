@@ -8,7 +8,7 @@ import styles from './modal.styles';
 import useAppDispatch from '../../../../hooks/useAppDispatch';
 import { useNavigation } from '@react-navigation/native';
 
-interface UpdateContactModalProps {
+interface UpdateContactStatusModalProps {
 	/**
 	 * If `true` modal will be visible
 	 * @type {boolean}
@@ -33,7 +33,7 @@ interface UpdateContactModalProps {
  * @param {Function} props.id Id of contact
  * @return {JSX.Element} JSX.Element
  */
-const UpdateContactModal: FC<UpdateContactModalProps> = props => {
+const UpdateContactStatusModal: FC<UpdateContactStatusModalProps> = props => {
 	const dispatch = useAppDispatch();
 	const navigation = useNavigation<DrawerNavigationProp>();
 	const [radioValue, setRadioValue] = useState<Contact['status']>('Pending');
@@ -47,7 +47,10 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 	 * @param {string} id id of contact to update
 	 * @param {Contact['status']} status this status will be replaced with previous contact status
 	 */
-	const updateContactHandler = (id: string, status: Contact['status']) => {
+	const updateContactStatusHandler = (
+		id: string,
+		status: Contact['status']
+	) => {
 		dispatch(updateContactStatus(id, status));
 		props.setVisible(false);
 	};
@@ -58,7 +61,7 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 			setVisible={props.setVisible}
 			title='Chose status'
 			//TODO: Update onOk to actual logic
-			onOk={updateContactHandler.bind(this, props.id, radioValue)}
+			onOk={updateContactStatusHandler.bind(this, props.id, radioValue)}
 		>
 			<Pressable
 				style={styles.modalRadioButtonContainer}
@@ -102,4 +105,4 @@ const UpdateContactModal: FC<UpdateContactModalProps> = props => {
 	);
 };
 
-export default UpdateContactModal;
+export default UpdateContactStatusModal;
